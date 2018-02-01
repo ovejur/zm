@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/login_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/me_pic_vatar"/>
+
+    <LinearLayout
+        android:id="@+id/user_li"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/login_img"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/username_text"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:gravity="right"
+            android:text="12322"/>
+
+        <TextView
+            android:id="@+id/change_user_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="8dp"
+            android:textColor="@color/palegreen"
+            android:text="点击选择用户"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/login_user"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/login_img"
+        android:maxLength="10"
+        android:textSize="15dp"
+        android:hint="请输入用户名"/>
+
+    <EditText
+        android:id="@+id/login_pwd"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/login_user"
+        android:maxLength="6"
+        android:textSize="15dp"
+        android:inputType="textPassword"
+        android:gravity="center"
+        android:hint="请输入密码"/>
+
+    <GridView
+        android:id="@+id/login_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:numColumns="3">
+
+    </GridView>
+
+</RelativeLayout>
