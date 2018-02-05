@@ -2,6 +2,8 @@ package zhujj.zm;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.Serializable;
+
 import zhujj.baselibrary.BaseApplication;
 import zhujj.zm.db.bean.DaoMaster;
 import zhujj.zm.db.bean.DaoSession;
@@ -14,6 +16,8 @@ import zhujj.zm.db.bean.DaoSession;
 public class MyApplication extends BaseApplication {
 
     private static DaoSession daoSession;
+
+    public static Store STORE_BEAN = new Store();
 
     @Override
     public void onCreate() {
@@ -33,6 +37,10 @@ public class MyApplication extends BaseApplication {
         DaoMaster daoMaster = new DaoMaster(db);
         //获取Dao对象管理者
         daoSession = daoMaster.newSession();
+    }
+
+    public static class Store implements Serializable {
+        public String user;
     }
 
     public static DaoSession getDaoInstant() {

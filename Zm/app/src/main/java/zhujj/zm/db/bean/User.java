@@ -29,6 +29,12 @@ public class User {
     @ToMany(referencedJoinProperty = "uid")
     private List<Book> books;
 
+    @Property(nameInDb = "updateTime")
+    private String updateTime; // 字数更新时间
+
+    @Property(nameInDb = "count")
+    private Long count; // 更新总字数
+
     /** Used to resolve relations */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
@@ -37,11 +43,13 @@ public class User {
     @Generated(hash = 1507654846)
     private transient UserDao myDao;
 
-    @Generated(hash = 1918463323)
-    public User(Long id, String name, String pwd) {
+    @Generated(hash = 550979398)
+    public User(Long id, String name, String pwd, String updateTime, Long count) {
         this.id = id;
         this.name = name;
         this.pwd = pwd;
+        this.updateTime = updateTime;
+        this.count = count;
     }
 
     @Generated(hash = 586692638)
@@ -134,6 +142,22 @@ public class User {
             throw new DaoException("Entity is detached from DAO context");
         }
         myDao.update(this);
+    }
+
+    public String getUpdateTime() {
+        return this.updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Long getCount() {
+        return this.count;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
     }
 
     /** called by internal mechanisms, do not call yourself. */

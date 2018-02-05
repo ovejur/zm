@@ -2,22 +2,25 @@ package zhujj.zm.activity;
 
 import android.content.Intent;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import zhujj.baselibrary.activity.BaseActivity;
-import zhujj.zm.*;
+import zhujj.zm.MyApplication;
+import zhujj.zm.R;
 import zhujj.zm.db.bean.User;
 import zhujj.zm.db.dao.UserDao;
 import zhujj.zm.util.SharedPreferencesUtil;
+import zhujj.zm.view.ConfirmDialog;
 import zhujj.zm.view.adapter.LoginGridviewAdapter;
 
 /**
@@ -30,37 +33,51 @@ public class LoginActivity extends BaseActivity {
     private GridView login_gridview;
     private EditText login_user, login_pwd;
     private String pwd = "";
-    private TextView username_text, change_user_img;
-    private LinearLayout user_li;
+    private TextView change_user_img;
 
     @Override
     protected void findViews() {
         setContentView(R.layout.activity_login);
+
         login_gridview = (GridView) findViewById(R.id.login_gridview);
         login_user = (EditText) findViewById(R.id.login_user);
         login_pwd = (EditText) findViewById(R.id.login_pwd);
-        user_li = (LinearLayout) findViewById(R.id.user_li);
-        username_text = (TextView) findViewById(R.id.username_text);
         change_user_img = (TextView) findViewById(R.id.change_user_img);
     }
 
     @Override
     protected void addAction() {
+        login_pwd.setInputType(InputType.TYPE_NULL);
         login_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
                     login_user.setText("");
                     pwd = "";
+                    login_user.setEnabled(true);
                 } else if (i == 1) {
                     pwd = pwd + "0";
                 } else if (i == 2) {
-                    pwd = pwd.substring(0, pwd.length()-1);
+                    if (pwd.length() != 0) {
+                        pwd = pwd.substring(0, pwd.length()-1);
+                    }
                 } else {
                     pwd = pwd + (i - 2);
                 }
                 refushPwd();
 
+            }
+        });
+
+        login_pwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+                            .hideSoftInputFromWindow(getCurrentFocus()
+                                            .getWindowToken(),
+                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                }
             }
         });
 
@@ -92,7 +109,7 @@ public class LoginActivity extends BaseActivity {
                                 showToastText("密码错误，请重新输入");
                             }
                         } else {
-                            showToastText("用户名不存在，是否进行注册");
+                            showChooseDialog("用户名不存在，是否进行注册");
                         }
 
                     }
@@ -114,25 +131,72 @@ public class LoginActivity extends BaseActivity {
         login_gridview.setAdapter(loginGridviewAdapter);
 
         List<User> usersAll = UserDao.queryAll();
+        if (usersAll.size() >= 2) {
+            change_user_img.setVisibility(View.VISIBLE);
+        } else {
+            change_user_img.setVisibility(View.GONE);
+        }
         if (usersAll.size() > 0) {
-            user_li.setVisibility(View.VISIBLE);
-            login_user.setVisibility(View.GONE);
             if (SharedPreferencesUtil.getUser(this) != null) {
-                username_text.setText(SharedPreferencesUtil.getUser(this));
+                login_user.setText(SharedPreferencesUtil.getUser(this));
+                login_user.setEnabled(false);
             } else {
-                username_text.setText(usersAll.get(0).getName());
+                login_user.setText(usersAll.get(0).getName());
+                login_user.setEnabled(false);
             }
         } else {
-            login_user.setVisibility(View.VISIBLE);
+            showToastText("您还没有注册用户，输入用户名密码注册");
+            login_user.setEnabled(true);
         }
     }
 
     private void refushPwd() {
-        login_pwd.setText(pwd);
+        if (pwd.length() > 0) {
+            String pwdString = "";
+            for (int i=0;i<pwd.length();i++) {
+                pwdString = pwdString + "*";
+            }
+            login_pwd.setText(pwdString);
+        } else {
+            login_pwd.setText("");
+        }
+
+    }
+
+    private void showChooseDialog(String errorMsg) {
+        ConfirmDialog confirmDialog = new ConfirmDialog(this, "提示", errorMsg,
+                "确认", new View.OnClickListener() {
+            public void onClick(View v) {
+
+                User user = new User();
+                user.setName(login_user.getText().toString());
+                user.setPwd(pwd);
+                insertUser(user);
+
+                gotoMainActivity();
+            }
+        }, "其他用户名", new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                login_user.setText("");
+                login_user.setEnabled(true);
+                pwd = "";
+                refushPwd();
+            }
+        });
+        confirmDialog.show();
+    }
+
+
+    private long insertUser(User user) {
+        return UserDao.insertUser(user);
     }
 
     private void gotoMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        MyApplication.STORE_BEAN.user = login_user.getText().toString();
+        Intent intent = new Intent(this, WriteBookMainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -40,5 +40,6 @@ public class StartActivity extends BaseActivity {
     private void gotoMainActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 }

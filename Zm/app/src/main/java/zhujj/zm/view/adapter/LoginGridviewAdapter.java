@@ -50,13 +50,17 @@ public class LoginGridviewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         if (i == 0) {
-            viewHolder.btnNumKey.setText("注册");
+            viewHolder.btnNumKey.setText("清空");
+            viewHolder.btnDelete.setVisibility(View.GONE);
         } else if (i == 1) {
             viewHolder.btnNumKey.setText("0");
+            viewHolder.btnDelete.setVisibility(View.GONE);
         } else if (i == 2) {
+            viewHolder.btnNumKey.setVisibility(View.INVISIBLE);
             viewHolder.btnDelete.setVisibility(View.VISIBLE);
         } else {
             viewHolder.btnNumKey.setText("" + (i - 2));
+            viewHolder.btnDelete.setVisibility(View.GONE);
         }
         return view;
     }

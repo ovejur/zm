@@ -12,50 +12,42 @@
         android:layout_marginTop="20dp"
         android:src="@mipmap/me_pic_vatar"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/user_li"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:layout_below="@id/login_img"
-        android:visibility="gone">
-        <TextView
-            android:id="@+id/username_text"
+        android:layout_below="@id/login_img">
+        <EditText
+            android:id="@+id/login_user"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:maxLength="10"
+            android:layout_centerInParent="true"
             android:textSize="15dp"
-            android:gravity="right"
-            android:text="12322"/>
-
+            android:gravity="center"
+            android:hint="请输入用户名"/>
         <TextView
             android:id="@+id/change_user_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/login_user"
+            android:layout_centerVertical="true"
             android:textSize="8dp"
             android:textColor="@color/palegreen"
             android:text="点击选择用户"/>
-    </LinearLayout>
+    </RelativeLayout>
 
-    <EditText
-        android:id="@+id/login_user"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/login_img"
-        android:maxLength="10"
-        android:textSize="15dp"
-        android:hint="请输入用户名"/>
+
 
     <EditText
         android:id="@+id/login_pwd"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/login_user"
+        android:layout_below="@id/user_li"
         android:maxLength="6"
         android:textSize="15dp"
         android:inputType="textPassword"
@@ -65,8 +57,12 @@
     <GridView
         android:id="@+id/login_gridview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:layout_alignParentBottom="true"
+        android:background="#999999"
+        android:horizontalSpacing="2dp"
+        android:verticalSpacing="2dp"
+        android:padding="2dp"
         android:numColumns="3">
 
     </GridView>

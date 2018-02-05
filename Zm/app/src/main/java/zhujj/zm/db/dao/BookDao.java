@@ -29,4 +29,5 @@ public class BookDao {
     public static List<Book> queryAll() {
         return getDaoInstant().getBookDao().loadAll();
     }
+
 }
