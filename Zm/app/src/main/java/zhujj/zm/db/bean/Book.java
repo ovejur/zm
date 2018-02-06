@@ -8,6 +8,7 @@ import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.Unique;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -16,7 +17,9 @@ import java.util.List;
  */
 
 @Entity
-public class Book {
+public class Book implements Serializable {
+    static final long serialVersionUID = 12L;
+
     @Id(autoincrement = true)
     private Long id;
 
@@ -35,7 +38,7 @@ public class Book {
     private String introduce; // 简介
 
     @Property(nameInDb = "inputTime")
-    private String inputTime; // 码字总时间
+    private Long inputTime; // 码字总时间(单位秒)
 
     @Property(nameInDb = "img")
     private byte[] img; // 封面
@@ -60,10 +63,10 @@ public class Book {
     @Generated(hash = 1097957864)
     private transient BookDao myDao;
 
-    @Generated(hash = 1732838031)
+    @Generated(hash = 481031013)
     public Book(Long id, Long uid, String name, String creatTime, String updateTime,
-            String introduce, String inputTime, byte[] img, Long count,
-            Long chapters, int status) {
+            String introduce, Long inputTime, byte[] img, Long count, Long chapters,
+            int status) {
         this.id = id;
         this.uid = uid;
         this.name = name;
@@ -145,11 +148,11 @@ public class Book {
         this.chapters = chapters;
     }
 
-    public String getInputTime() {
+    public Long getInputTime() {
         return this.inputTime;
     }
 
-    public void setInputTime(String inputTime) {
+    public void setInputTime(Long inputTime) {
         this.inputTime = inputTime;
     }
 

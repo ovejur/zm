@@ -194,7 +194,10 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void gotoMainActivity() {
-        MyApplication.STORE_BEAN.user = login_user.getText().toString();
+        List<User> users = UserDao.queryUser(login_user.getText().toString());
+        if (users.size() > 0) {
+            MyApplication.STORE_BEAN.user = users.get(0);
+        }
         Intent intent = new Intent(this, WriteBookMainActivity.class);
         startActivity(intent);
         finish();

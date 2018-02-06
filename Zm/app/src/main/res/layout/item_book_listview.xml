@@ -1,11 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/ghostwhite">
+
+    <ImageView
+        android:id="@+id/book_img"
+        android:layout_margin="5dp"
+        android:layout_width="65dp"
+        android:layout_height="90dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/logo"/>
 
     <TextView
         android:id="@+id/book_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="18dp"
+        android:text="1231231231231231aaqaa"
+        android:layout_toRightOf="@id/book_img"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/book_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="13dp"
+        android:lines="3"
+        android:ellipsize="end"
+        android:textColor="@color/ipos_color_5a6164"
+        android:layout_below="@+id/book_name"
+        android:layout_toRightOf="@+id/book_img"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/book_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="努力更新中"
+        android:textSize="15dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/deeppink"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/book_creat_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018-01-01"
+        android:textSize="11dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/book_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="总字数:1212345"
+        android:textSize="11dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/book_img"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/book_chapter_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="|    共123章"
+        android:textSize="11dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/book_count"
+        android:layout_margin="5dp"/>
+
+</RelativeLayout>

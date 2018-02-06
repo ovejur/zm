@@ -30,4 +30,7 @@ public class BookDao {
         return getDaoInstant().getBookDao().loadAll();
     }
 
+    public static List<Book> queryUser(long uid) {
+        return MyApplication.getDaoInstant().getBookDao().queryBuilder().where(zhujj.zm.db.bean.BookDao.Properties.Uid.eq(uid)).list();
+    }
 }

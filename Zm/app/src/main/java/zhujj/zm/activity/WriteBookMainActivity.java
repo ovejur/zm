@@ -2,9 +2,12 @@ package zhujj.zm.activity;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import zhujj.baselibrary.activity.BaseActivity;
@@ -12,7 +15,8 @@ import zhujj.zm.MyApplication;
 import zhujj.zm.R;
 import zhujj.zm.db.bean.Book;
 import zhujj.zm.db.bean.User;
-import zhujj.zm.db.dao.UserDao;
+import zhujj.zm.db.dao.BookDao;
+import zhujj.zm.view.ConfirmDialog;
 import zhujj.zm.view.adapter.BookListAdapter;
 
 /**
@@ -20,7 +24,7 @@ import zhujj.zm.view.adapter.BookListAdapter;
  * 邮箱：344951059@qq.com
  */
 
-public class  WriteBookMainActivity extends BaseActivity {
+public class WriteBookMainActivity extends BaseActivity {
 
     private TextView add_book_btn;
     private ListView book_listview;
@@ -43,13 +47,19 @@ public class  WriteBookMainActivity extends BaseActivity {
                 goToAddBook();
             }
         });
+        book_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                goToChapter(books.get(i));
+            }
+        });
     }
 
     @Override
     protected void initData() {
 
         bookListAdapter = new BookListAdapter(this);
-
+        book_listview.setAdapter(bookListAdapter);
     }
 
     @Override
@@ -60,27 +70,58 @@ public class  WriteBookMainActivity extends BaseActivity {
 
     private void checkUserAddreflushBookList() {
         if (MyApplication.STORE_BEAN.user != null) {
-            List<User> users = UserDao.queryUser(MyApplication.STORE_BEAN.user);
-            if (users.size() > 0) {
-                User user = users.get(0);
-                if (user.getCount() != null) {
-                    showToastText("今日总码字:"+user.getCount());
-                } else {
-                    showToastText("今日总码字:0");
-                }
-                books = user.getBooks();
-                bookListAdapter.reflushAdapter(books);
+            User user = MyApplication.STORE_BEAN.user;
+            if (user.getCount() != null) {
+                showToastText("今日总码字:" + user.getCount());
             } else {
-//                showToastText("今日总码字:1");
+                showToastText("今日总码字:0");
             }
+            books = BookDao.queryUser(user.getId());
+            Collections.sort(books, new Comparator<Book>() {
+                @Override
+                public int compare(Book book, Book t1) {
+                    return -1*book.getUpdateTime().compareTo(t1.getUpdateTime());
+                }
+            });
+            bookListAdapter.reflushAdapter(books);
         } else {
-//            showToastText("今日总码字:2");
+            View.OnClickListener onClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gotoLoginActivity();
+                }
+            };
+            showChooseDialog("登录信息失效，请重新登录", onClickListener);
         }
     }
 
     private void goToAddBook() {
         Intent intent = new Intent(this, AddBookActivity.class);
         startActivity(intent);
+    }
+
+    private void goToChapter(Book book) {
+        Intent intent = new Intent(this, BookChapteractivity.class);
+        intent.putExtra("book", book);
+        startActivity(intent);
+    }
+
+    private void gotoLoginActivity() {
+        Intent intent = new Intent(this, WriteBookMainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void showChooseDialog(String errorMsg, View.OnClickListener onClickListener) {
+        ConfirmDialog confirmDialog = new ConfirmDialog(this, "提示", errorMsg,
+                "确认", onClickListener, "取消", new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        confirmDialog.show();
     }
 
 }

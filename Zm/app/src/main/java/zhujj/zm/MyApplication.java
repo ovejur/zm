@@ -7,6 +7,7 @@ import java.io.Serializable;
 import zhujj.baselibrary.BaseApplication;
 import zhujj.zm.db.bean.DaoMaster;
 import zhujj.zm.db.bean.DaoSession;
+import zhujj.zm.db.bean.User;
 
 /**
  * 作者：朱建晶 on 2018/1/22 10:31
@@ -40,7 +41,7 @@ public class MyApplication extends BaseApplication {
     }
 
     public static class Store implements Serializable {
-        public String user;
+        public User user;
     }
 
     public static DaoSession getDaoInstant() {

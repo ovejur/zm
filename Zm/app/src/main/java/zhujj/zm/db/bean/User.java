@@ -8,6 +8,7 @@ import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.Unique;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,7 +16,9 @@ import java.util.List;
  * 邮箱：344951059@qq.com
  */
 @Entity
-public class User {
+public class User implements Serializable {
+
+    static final long serialVersionUID = 14L;
 
     @Id(autoincrement = true)
     private Long id;
@@ -32,8 +35,11 @@ public class User {
     @Property(nameInDb = "updateTime")
     private String updateTime; // 字数更新时间
 
+    @Property(nameInDb = "updateCount")
+    private Long updateCount; // 更新总字数
+
     @Property(nameInDb = "count")
-    private Long count; // 更新总字数
+    private Long count; // 总字数
 
     /** Used to resolve relations */
     @Generated(hash = 2040040024)
@@ -43,12 +49,13 @@ public class User {
     @Generated(hash = 1507654846)
     private transient UserDao myDao;
 
-    @Generated(hash = 550979398)
-    public User(Long id, String name, String pwd, String updateTime, Long count) {
+    @Generated(hash = 769587108)
+    public User(Long id, String name, String pwd, String updateTime, Long updateCount, Long count) {
         this.id = id;
         this.name = name;
         this.pwd = pwd;
         this.updateTime = updateTime;
+        this.updateCount = updateCount;
         this.count = count;
     }
 
@@ -158,6 +165,14 @@ public class User {
 
     public void setCount(Long count) {
         this.count = count;
+    }
+
+    public Long getUpdateCount() {
+        return this.updateCount;
+    }
+
+    public void setUpdateCount(Long updateCount) {
+        this.updateCount = updateCount;
     }
 
     /** called by internal mechanisms, do not call yourself. */

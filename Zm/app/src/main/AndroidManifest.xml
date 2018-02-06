@@ -22,6 +22,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.WriteBookMainActivity" />
         <activity android:name=".activity.AddBookActivity" />
+        <activity android:name=".activity.BookChapteractivity" />
     </application>
 
 </manifest>

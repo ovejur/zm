@@ -1,6 +1,8 @@
 package zhujj.zm.view.adapter;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -37,6 +39,7 @@ public class LoginGridviewAdapter extends BaseAdapter {
         return 0;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
@@ -51,6 +54,7 @@ public class LoginGridviewAdapter extends BaseAdapter {
         }
         if (i == 0) {
             viewHolder.btnNumKey.setText("清空");
+            viewHolder.btnNumKey.setTextColor(context.getColor(R.color.deepskyblue));
             viewHolder.btnDelete.setVisibility(View.GONE);
         } else if (i == 1) {
             viewHolder.btnNumKey.setText("0");
