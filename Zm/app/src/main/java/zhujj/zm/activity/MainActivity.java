@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
         diary_re.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showToastText("敬请期待");
+                gotoDiaryMainActivity();
             }
         });
         sys_re.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +67,11 @@ public class MainActivity extends BaseActivity {
 
     private void gotoBookMainActivity() {
         Intent intent = new Intent(this, WriteBookMainActivity.class);
+        startActivity(intent);
+    }
+
+    private void gotoDiaryMainActivity() {
+        Intent intent = new Intent(this, DiaryMainActivity.class);
         startActivity(intent);
     }
 }

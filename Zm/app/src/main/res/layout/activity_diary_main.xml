@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/main_top"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/ipos_authentication_return"-->
+        <!--android:layout_width="@dimen/ipos_margin_48_dp"-->
+        <!--android:layout_height="@dimen/ipos_margin_48_dp"-->
+        <!--android:layout_centerVertical="true">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="@dimen/ipos_margin_13_dp"-->
+        <!--android:layout_height="@dimen/ipos_margin_13_dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="@dimen/ipos_margin_15_dp"-->
+        <!--android:src="@drawable/ipos_img_close_details" />-->
+        <!--</RelativeLayout>-->
+
+
+
+        <RelativeLayout
+            android:id="@+id/add_diary_re"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="15dp"
+                android:textSize="25dp"
+                android:textColor="@color/deepskyblue"
+                android:text="+"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="心情日记"
+            android:textColor="@color/ipos_color_13252e"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/deepskyblue" />
+    </RelativeLayout>
+    <ListView
+        android:id="@+id/diary_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+    </ListView>
+</LinearLayout>

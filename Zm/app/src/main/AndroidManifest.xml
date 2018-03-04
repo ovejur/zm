@@ -25,6 +25,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.WriteBookMainActivity" />
         <activity android:name=".activity.NovelMainActivity" />
+        <activity android:name=".activity.DiaryMainActivity" />
         <activity android:name=".activity.AddBookActivity" />
         <activity android:name=".activity.BookChapteractivity" />
         <activity android:name=".activity.WriteChapterActivity"

@@ -18,7 +18,7 @@ import java.util.List;
 
 @Entity
 public class Book implements Serializable {
-    static final long serialVersionUID = 12L;
+    static final long serialVersionUID = 18L;
 
     @Id(autoincrement = true)
     private Long id;

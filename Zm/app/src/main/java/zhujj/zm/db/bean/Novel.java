@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 public class Novel {
 
-    static final long serialVersionUID = 12L;
+    static final long serialVersionUID = 22L;
 
     @Id(autoincrement = true)
     private Long id;

@@ -106,7 +106,7 @@
                     android:typeface="serif"
                     android:textSize="22dp"
                     android:textColor="@color/deepskyblue"
-                    android:text="写小说"/>
+                    android:text="写写小说"/>
             </RelativeLayout>
 
         </LinearLayout>
@@ -131,7 +131,7 @@
                     android:typeface="serif"
                     android:textSize="22dp"
                     android:textColor="@color/darkviolet"
-                    android:text="写日记"/>
+                    android:text="心情日记"/>
             </RelativeLayout>
 
             <View
