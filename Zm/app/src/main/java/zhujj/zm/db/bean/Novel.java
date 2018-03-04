@@ -53,7 +53,10 @@ public class Novel {
     private Long count; // 总字数
 
     @Property(nameInDb = "chapters")
-    private Long chapters; // 章节数
+    private Long chapters; // 总章节数
+
+    @Property(nameInDb = "chapters")
+    private Long chapterCache; // 缓存章节数
 
     @Property(nameInDb = "status")
     private int status;  // 状态  0更新中 1完本
@@ -72,10 +75,10 @@ public class Novel {
     @Generated(hash = 318437044)
     private transient NovelDao myDao;
 
-    @Generated(hash = 995201557)
+    @Generated(hash = 820180915)
     public Novel(Long id, Long uid, String name, String author, String url, String novelType,
             String creatTime, String updateTime, String introduce, String img, Long count,
-            Long chapters, int status, String novelNewest) {
+            Long chapters, Long chapterCache, int status, String novelNewest) {
         this.id = id;
         this.uid = uid;
         this.name = name;
@@ -88,6 +91,7 @@ public class Novel {
         this.img = img;
         this.count = count;
         this.chapters = chapters;
+        this.chapterCache = chapterCache;
         this.status = status;
         this.novelNewest = novelNewest;
     }
@@ -270,6 +274,14 @@ public class Novel {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Long getChapterCache() {
+        return this.chapterCache;
+    }
+
+    public void setChapterCache(Long chapterCache) {
+        this.chapterCache = chapterCache;
     }
 
     /** called by internal mechanisms, do not call yourself. */
