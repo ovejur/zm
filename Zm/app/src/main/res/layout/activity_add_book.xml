@@ -75,11 +75,11 @@
                 android:layout_below="@id/add_book_title2"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:background="@null"
                 android:gravity="center"
                 android:textSize="14dp"
                 android:maxLength="300"
                 android:text=""
+                android:background="@null"
                 android:textCursorDrawable="@null" />
 
             <View

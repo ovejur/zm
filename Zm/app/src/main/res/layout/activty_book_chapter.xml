@@ -21,26 +21,37 @@
                 <!--android:src="@drawable/ipos_img_close_details" />-->
         <!--</RelativeLayout>-->
 
+
+
+        <RelativeLayout
+            android:id="@+id/add_chapter_re"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="15dp"
+                android:textSize="25dp"
+                android:textColor="@color/deepskyblue"
+                android:text="+"/>
+        </RelativeLayout>
         <TextView
             android:id="@+id/book_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="斗罗大陆"
+            android:layout_marginLeft="50dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text=""
             android:textColor="@color/ipos_color_13252e"
             android:textSize="18dp" />
 
-        <TextView
-            android:id="@+id/ipos_authentication_canel_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:textSize="25dp"
-            android:textColor="@color/deepskyblue"
-            android:text="+"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -49,9 +60,10 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         android:orientation="vertical">
         <RelativeLayout
+            android:id="@+id/chapter_intro_re"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -67,19 +79,82 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textSize="15dp"
-                android:lines="3"
+                android:textSize="13dp"
+                android:lines="4"
                 android:ellipsize="end"
+                android:layout_centerVertical="true"
                 android:textColor="@color/ipos_color_5a6164"
                 android:layout_toRightOf="@+id/book_img"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:id="@+id/book_creat_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="创建时间:2018-01-01"
+                android:textSize="11dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/book_img"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:id="@+id/book_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="努力更新中"
+                android:textSize="13dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/deeppink"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:id="@+id/book_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总字数:1212345"
+                android:textSize="11dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/book_img"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:id="@+id/book_chapter_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="|    共123章"
+                android:textSize="11dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/book_count"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:id="@+id/book_chapter_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="码字速度：55/分钟"
+                android:textSize="11dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
                 android:layout_margin="5dp"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/me_pic_vatar"/>
         </RelativeLayout>
     </LinearLayout>
+    <ListView
+        android:id="@+id/chapter_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
 
+    </ListView>
 
 </LinearLayout>

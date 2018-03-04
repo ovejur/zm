@@ -1,5 +1,6 @@
 package zhujj.zm.activity;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -206,8 +207,16 @@ public class AddBookActivity extends BaseActivity {
         book.setName(add_book_name.getText().toString());
         book.setInputTime(count);
         BookDao.insertBook(book);
-        finish();
+        gotoBookChapteractivity(book);
 //        book.setImg("");
+    }
+
+    private void gotoBookChapteractivity(Book book) {
+        Intent intent = new Intent(this, BookChapteractivity.class);
+        MyApplication.STORE_BEAN.book = book;
+//        intent.putExtra("book", book);
+        startActivity(intent);
+        finish();
     }
 
     private void showChooseDialog(String errorMsg, View.OnClickListener onClickListener) {

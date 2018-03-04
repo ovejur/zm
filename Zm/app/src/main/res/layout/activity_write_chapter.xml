@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/chapter_top_re"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:id="@+id/chapter_txt_re"
+            android:layout_width="50dp"
+            android:layout_height="44dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="15dp"
+                android:textSize="18dp"
+                android:textColor="@color/deepskyblue"
+                android:text="TXT"/>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/chapter_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/ipos_color_13252e"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/deepskyblue" />
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/chapter_bottom_re"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true">
+
+            <RelativeLayout
+                android:id="@+id/bg_color"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/task_work_attch_icon"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/text_color"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/take_picturemood"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_content_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="字数:888  |  555/分钟"
+            android:textSize="13dp"
+            android:textColor="@color/deepskyblue"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+            <TextView
+                android:id="@+id/text_size_n"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="28dp"
+                android:textColor="@color/deepskyblue"
+                android:text="+"/>
+            <TextView
+                android:id="@+id/text_size_p"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="28dp"
+                android:textColor="@color/deepskyblue"
+                android:text="-"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/chapter_content_re"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/chapter_top_re"
+        android:layout_above="@+id/chapter_bottom_re"
+        android:background="@color/white">
+        <EditText
+            android:id="@+id/chapter_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"
+            android:gravity="start"
+            android:background="@null"
+            android:textCursorDrawable="@null"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

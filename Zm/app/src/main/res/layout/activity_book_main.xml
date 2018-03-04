@@ -3,20 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/book_listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
 
-    </ListView>
-
+    <!--android:background="@color/ipos_color_E6E6E6"-->
 
     <RelativeLayout
+        android:id="@+id/book_bottom_re"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/ipos_color_E6E6E6">
+        >
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,8 +20,8 @@
 
             <TextView
                 android:id="@+id/my_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/shape_yuan_bk"
                 android:gravity="center"
@@ -39,8 +34,8 @@
 
             <TextView
                 android:id="@+id/add_book_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/shape_yuan_bk"
                 android:gravity="center"
@@ -55,7 +50,14 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <ListView
+        android:id="@+id/book_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/book_bottom_re"
+        android:background="@color/white">
 
+    </ListView>
 
 
 </RelativeLayout>

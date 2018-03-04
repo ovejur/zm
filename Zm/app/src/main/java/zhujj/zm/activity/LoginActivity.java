@@ -74,8 +74,7 @@ public class LoginActivity extends BaseActivity {
             public void onFocusChange(View view, boolean b) {
                 if (b) {
                     ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(getCurrentFocus()
-                                            .getWindowToken(),
+                            .hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                                     InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }
@@ -94,13 +93,13 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                pwd = editable.toString();
                 if (pwd.length() == 6) {
                     if (TextUtils.isEmpty(login_user.getText())) {
                         showToastText("请输入用户名");
                     } else {
                         List<User> users = UserDao.queryUser(login_user.getText().toString());
                         if (users.size() > 0) {
+
                             if (users.get(0).getPwd().equals(pwd)) {
                                 gotoMainActivity();
                             } else {
@@ -169,8 +168,14 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View v) {
 
                 User user = new User();
+                long count = 0;
                 user.setName(login_user.getText().toString());
                 user.setPwd(pwd);
+                user.setBgColor(0);
+                user.setTextColor(0);
+                user.setTextSize(15);
+                user.setCount(count);
+                user.setCountTime(count);
                 insertUser(user);
 
                 gotoMainActivity();
@@ -197,8 +202,9 @@ public class LoginActivity extends BaseActivity {
         List<User> users = UserDao.queryUser(login_user.getText().toString());
         if (users.size() > 0) {
             MyApplication.STORE_BEAN.user = users.get(0);
+            SharedPreferencesUtil.saveUser(MyApplication.STORE_BEAN.user.getName(), this);
         }
-        Intent intent = new Intent(this, WriteBookMainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }

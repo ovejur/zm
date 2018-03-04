@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import java.io.Serializable;
 
 import zhujj.baselibrary.BaseApplication;
+import zhujj.zm.db.bean.Book;
+import zhujj.zm.db.bean.Chapter;
 import zhujj.zm.db.bean.DaoMaster;
 import zhujj.zm.db.bean.DaoSession;
 import zhujj.zm.db.bean.User;
@@ -42,6 +44,8 @@ public class MyApplication extends BaseApplication {
 
     public static class Store implements Serializable {
         public User user;
+        public Book book;
+        public Chapter chapter;
     }
 
     public static DaoSession getDaoInstant() {

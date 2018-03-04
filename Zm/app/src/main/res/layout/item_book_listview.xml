@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ghostwhite">
-
+    >
+    <!--android:background="@color/ghostwhite"-->
     <ImageView
         android:id="@+id/book_img"
         android:layout_margin="5dp"
@@ -21,7 +21,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:textSize="18dp"
-        android:text="1231231231231231aaqaa"
+        android:text=""
         android:layout_toRightOf="@id/book_img"/>
 
     <TextView

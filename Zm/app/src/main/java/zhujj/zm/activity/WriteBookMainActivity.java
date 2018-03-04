@@ -15,7 +15,6 @@ import zhujj.zm.MyApplication;
 import zhujj.zm.R;
 import zhujj.zm.db.bean.Book;
 import zhujj.zm.db.bean.User;
-import zhujj.zm.db.dao.BookDao;
 import zhujj.zm.view.ConfirmDialog;
 import zhujj.zm.view.adapter.BookListAdapter;
 
@@ -71,12 +70,14 @@ public class WriteBookMainActivity extends BaseActivity {
     private void checkUserAddreflushBookList() {
         if (MyApplication.STORE_BEAN.user != null) {
             User user = MyApplication.STORE_BEAN.user;
+            user.refresh();
             if (user.getCount() != null) {
                 showToastText("今日总码字:" + user.getCount());
             } else {
                 showToastText("今日总码字:0");
             }
-            books = BookDao.queryUser(user.getId());
+            user.resetBooks();
+            books = user.getBooks();
             Collections.sort(books, new Comparator<Book>() {
                 @Override
                 public int compare(Book book, Book t1) {
@@ -84,6 +85,7 @@ public class WriteBookMainActivity extends BaseActivity {
                 }
             });
             bookListAdapter.reflushAdapter(books);
+            MyApplication.STORE_BEAN.user = user;
         } else {
             View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
@@ -102,12 +104,13 @@ public class WriteBookMainActivity extends BaseActivity {
 
     private void goToChapter(Book book) {
         Intent intent = new Intent(this, BookChapteractivity.class);
-        intent.putExtra("book", book);
+//        intent.putExtra("book", book);
+        MyApplication.STORE_BEAN.book = book;
         startActivity(intent);
     }
 
     private void gotoLoginActivity() {
-        Intent intent = new Intent(this, WriteBookMainActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
     }

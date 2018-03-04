@@ -4,14 +4,156 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="zhujj.zm.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <RelativeLayout
+        android:id="@+id/main_top"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/ipos_authentication_return"-->
+        <!--android:layout_width="@dimen/ipos_margin_48_dp"-->
+        <!--android:layout_height="@dimen/ipos_margin_48_dp"-->
+        <!--android:layout_centerVertical="true">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="@dimen/ipos_margin_13_dp"-->
+        <!--android:layout_height="@dimen/ipos_margin_13_dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="@dimen/ipos_margin_15_dp"-->
+        <!--android:src="@drawable/ipos_img_close_details" />-->
+        <!--</RelativeLayout>-->
+
+
+
+        <RelativeLayout
+            android:id="@+id/add_chapter_re"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="15dp"
+                android:textSize="25dp"
+                android:textColor="@color/deepskyblue"
+                android:text="+"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="我的地盘"
+            android:textColor="@color/ipos_color_13252e"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/deepskyblue" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/main_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:id="@+id/novel_re"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:typeface="serif"
+                    android:textSize="22dp"
+                    android:textColor="@color/crimson"
+                    android:text="追书"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/deepskyblue" />
+            <RelativeLayout
+                android:id="@+id/book_re"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:typeface="serif"
+                    android:textSize="22dp"
+                    android:textColor="@color/deepskyblue"
+                    android:text="写小说"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/deepskyblue" />
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <RelativeLayout
+                android:id="@+id/diary_re"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:typeface="serif"
+                    android:textSize="22dp"
+                    android:textColor="@color/darkviolet"
+                    android:text="写日记"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/deepskyblue" />
+            <RelativeLayout
+                android:id="@+id/sys_re"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:typeface="serif"
+                    android:textSize="22dp"
+                    android:textColor="@color/ipos_color_29bb05"
+                    android:text="系统"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>

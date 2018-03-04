@@ -73,7 +73,7 @@ public class BookListAdapter extends BaseAdapter {
         viewHolder.book_status.setText(getTimeDifference(books.get(i).getUpdateTime(), viewHolder.book_status));
         viewHolder.book_count.setText("总字数:"+books.get(i).getCount());
         viewHolder.book_chapter_count.setText("|    共"+books.get(i).getChapters() + "章");
-        viewHolder.book_creat_time.setText(timedateYMD(books.get(i).getCreatTime()));
+        viewHolder.book_creat_time.setText(zhujj.zm.util.TimeUtils.timedateYMD(books.get(i).getCreatTime()));
         return view;
     }
 
@@ -81,13 +81,6 @@ public class BookListAdapter extends BaseAdapter {
         public TextView book_name, book_intro, book_status, book_creat_time, book_count, book_chapter_count;
     }
 
-    private String timedateYMD(String time) {
-        String timeString = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        long  l = Long.valueOf(time);
-        timeString = sdf.format(new Date(l));//单位秒
-        return timeString;
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private String getTimeDifference(String starTime, TextView textView) {
@@ -95,8 +88,8 @@ public class BookListAdapter extends BaseAdapter {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         try {
-            Date parse = dateFormat.parse(timedateYMD(starTime));
-            Date parse1 = dateFormat.parse(timedateYMD(""+System.currentTimeMillis()));
+            Date parse = dateFormat.parse(zhujj.zm.util.TimeUtils.timedateYMD(starTime));
+            Date parse1 = dateFormat.parse(zhujj.zm.util.TimeUtils.timedateYMD(""+System.currentTimeMillis()));
 
             long diff = parse1.getTime() - parse.getTime();
 
@@ -111,6 +104,7 @@ public class BookListAdapter extends BaseAdapter {
             long min1 = ((diff / (60 * 1000)) - hour1 * 60);
             if (min1 < 60 && hour1 == 0) {
                 timeString = min1 + "分钟前更新";
+                textView.setTextColor(context.getColor(R.color.deeppink));
             } else if (hour1 < 12) {
                 timeString = hour1 + "小时前更新";
                 textView.setTextColor(context.getColor(R.color.darkturquoise));

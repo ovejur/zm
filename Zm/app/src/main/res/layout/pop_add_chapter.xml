@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/ipos_shap_normalblue" >
+
+    <EditText
+        android:id="@+id/chapter_name"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_weight="0.15"
+        android:layout_margin="5dp"
+        android:maxLength="25"
+        android:background="@null"
+        android:textCursorDrawable="@null"
+        />
+
+    <TextView
+        android:id="@+id/chapter_add"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:layout_weight="0.85"
+        android:text="确认"
+        android:gravity="center"
+        android:textColor="@color/deepskyblue"
+        android:background="@drawable/ipos_shap_normalblue"/>
+
+</LinearLayout>

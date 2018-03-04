@@ -29,8 +29,23 @@ public class User implements Serializable {
     @Property(nameInDb = "pwd")
     private String pwd;
 
+    @Property(nameInDb = "textSize")
+    private int textSize; // 字体大小
+
+    @Property(nameInDb = "textColor")
+    private int textColor; // 字体颜色
+
+    @Property(nameInDb = "bgColor")
+    private int bgColor; // 背景
+
     @ToMany(referencedJoinProperty = "uid")
-    private List<Book> books;
+    private List<Book> books; // 写书的书列表
+
+    @ToMany(referencedJoinProperty = "uid")
+    private List<Time> times;
+
+    @ToMany(referencedJoinProperty = "uid")
+    private List<Novel> novels; // 追书的小说列表
 
     @Property(nameInDb = "updateTime")
     private String updateTime; // 字数更新时间
@@ -41,6 +56,9 @@ public class User implements Serializable {
     @Property(nameInDb = "count")
     private Long count; // 总字数
 
+    @Property(nameInDb = "countTime")
+    private Long countTime; // 总时间
+
     /** Used to resolve relations */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
@@ -49,14 +67,19 @@ public class User implements Serializable {
     @Generated(hash = 1507654846)
     private transient UserDao myDao;
 
-    @Generated(hash = 769587108)
-    public User(Long id, String name, String pwd, String updateTime, Long updateCount, Long count) {
+    @Generated(hash = 1188341098)
+    public User(Long id, String name, String pwd, int textSize, int textColor, int bgColor,
+            String updateTime, Long updateCount, Long count, Long countTime) {
         this.id = id;
         this.name = name;
         this.pwd = pwd;
+        this.textSize = textSize;
+        this.textColor = textColor;
+        this.bgColor = bgColor;
         this.updateTime = updateTime;
         this.updateCount = updateCount;
         this.count = count;
+        this.countTime = countTime;
     }
 
     @Generated(hash = 586692638)
@@ -173,6 +196,94 @@ public class User implements Serializable {
 
     public void setUpdateCount(Long updateCount) {
         this.updateCount = updateCount;
+    }
+
+    public Long getCountTime() {
+        return this.countTime;
+    }
+
+    public void setCountTime(Long countTime) {
+        this.countTime = countTime;
+    }
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 1673383456)
+    public List<Time> getTimes() {
+        if (times == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            TimeDao targetDao = daoSession.getTimeDao();
+            List<Time> timesNew = targetDao._queryUser_Times(id);
+            synchronized (this) {
+                if (times == null) {
+                    times = timesNew;
+                }
+            }
+        }
+        return times;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1093885576)
+    public synchronized void resetTimes() {
+        times = null;
+    }
+
+    public int getTextSize() {
+        return this.textSize;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
+    }
+
+    public int getTextColor() {
+        return this.textColor;
+    }
+
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+    }
+
+    public int getBgColor() {
+        return this.bgColor;
+    }
+
+    public void setBgColor(int bgColor) {
+        this.bgColor = bgColor;
+    }
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 944430418)
+    public List<Novel> getNovels() {
+        if (novels == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            NovelDao targetDao = daoSession.getNovelDao();
+            List<Novel> novelsNew = targetDao._queryUser_Novels(id);
+            synchronized (this) {
+                if (novels == null) {
+                    novels = novelsNew;
+                }
+            }
+        }
+        return novels;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 743336670)
+    public synchronized void resetNovels() {
+        novels = null;
     }
 
     /** called by internal mechanisms, do not call yourself. */
