@@ -47,6 +47,9 @@ public class User implements Serializable {
     @ToMany(referencedJoinProperty = "uid")
     private List<Novel> novels; // 追书的小说列表
 
+    @ToMany(referencedJoinProperty = "uid")
+    private List<Diary> diarys; // 日记列表
+
     @Property(nameInDb = "updateTime")
     private String updateTime; // 字数更新时间
 
@@ -284,6 +287,34 @@ public class User implements Serializable {
     @Generated(hash = 743336670)
     public synchronized void resetNovels() {
         novels = null;
+    }
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 1016883554)
+    public List<Diary> getDiarys() {
+        if (diarys == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            DiaryDao targetDao = daoSession.getDiaryDao();
+            List<Diary> diarysNew = targetDao._queryUser_Diarys(id);
+            synchronized (this) {
+                if (diarys == null) {
+                    diarys = diarysNew;
+                }
+            }
+        }
+        return diarys;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1143677858)
+    public synchronized void resetDiarys() {
+        diarys = null;
     }
 
     /** called by internal mechanisms, do not call yourself. */

@@ -28,6 +28,7 @@
         <activity android:name=".activity.DiaryMainActivity" />
         <activity android:name=".activity.AddBookActivity" />
         <activity android:name=".activity.BookChapteractivity" />
+        <activity android:name=".activity.WriteDiaryActivity" />
         <activity android:name=".activity.WriteChapterActivity"
             android:windowSoftInputMode="adjustResize"/>
     </application>

@@ -1,6 +1,7 @@
 package zhujj.zm.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.ListView;
@@ -9,9 +10,17 @@ import android.widget.Toast;
 
 import net.steamcrafted.lineartimepicker.dialog.LinearDatePickerDialog;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import zhujj.baselibrary.activity.BaseActivity;
+import zhujj.zm.MyApplication;
 import zhujj.zm.R;
+import zhujj.zm.db.bean.Diary;
+import zhujj.zm.db.bean.User;
+import zhujj.zm.db.dao.DiaryDao;
 import zhujj.zm.util.TimeUtils;
+import zhujj.zm.view.adapter.DiaryListAdapter;
 
 /**
  * 作者：朱建晶 on 2018/3/4 21:14
@@ -22,6 +31,9 @@ public class DiaryMainActivity extends BaseActivity {
 
     private ListView diary_listview;
     private RelativeLayout add_diary_re;
+
+    private List<Diary> diaries = new ArrayList<>();
+    private DiaryListAdapter diaryListAdapter;
 
 //    final int backgroundDark = ResourcesCompat.getColor(getResources(), R.color.darkslateblue, getTheme());
 //    final int foregroundDark = ResourcesCompat.getColor(getResources(), R.color.indigo, getTheme());
@@ -47,8 +59,21 @@ public class DiaryMainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        diaryListAdapter = new DiaryListAdapter(this);
+        diary_listview.setAdapter(diaryListAdapter);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refushDiaryListView();
+    }
 
+    private void refushDiaryListView() {
+        User user = MyApplication.STORE_BEAN.user;
+        user.resetDiarys();
+        diaries = user.getDiarys();
+        diaryListAdapter.reflushAdapter(diaries);
 
     }
 
@@ -62,11 +87,12 @@ public class DiaryMainActivity extends BaseActivity {
                 .setYear(2018)
                 .setMinYear(2000)
                 .setMaxYear(2040)
-                .setShowTutorial(true)
+                .setShowTutorial(false)
                 .setButtonCallback(new LinearDatePickerDialog.ButtonCallback() {
                     @Override
                     public void onPositive(DialogInterface dialog, int year, int month, int day) {
-                        Toast.makeText(DiaryMainActivity.this, TimeUtils.timedateYMD(TimeUtils.dateYMDToTime("" + year + "-" + month + "-" + day + "-12-12-12")), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DiaryMainActivity.this, TimeUtils.dateYMDToTime("" + year + "-" + month + "-" + day + "-12-12-12"), Toast.LENGTH_SHORT).show();
+                        goToWriteDiary(TimeUtils.dateYMDToTime("" + year + "-" + month + "-" + day + "-12-12-12"));
                     }
 
                     @Override
@@ -76,5 +102,15 @@ public class DiaryMainActivity extends BaseActivity {
                 })
                 .build()
                 .show();
+    }
+
+    private void goToWriteDiary(String time) {
+        Diary diary = new Diary();
+        diary.setUid(MyApplication.STORE_BEAN.user.getId());
+        diary.setContent("");
+        diary.setTime(time);
+        DiaryDao.insertDiary(diary);
+        Intent intent = new Intent(this, WriteDiaryActivity.class);
+        startActivity(intent);
     }
 }

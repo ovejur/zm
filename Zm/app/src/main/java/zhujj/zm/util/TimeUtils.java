@@ -24,6 +24,19 @@ public class TimeUtils {
         return timeString;
     }
 
+    public static String timedateYM(String time) {
+        String timeString = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            long  l = Long.valueOf(time);
+            timeString = sdf.format(new Date(l));//单位秒
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return timeString;
+    }
+
     public static String dateYMDToTime(String dateString) {
         SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss",
                 Locale.CHINA);
